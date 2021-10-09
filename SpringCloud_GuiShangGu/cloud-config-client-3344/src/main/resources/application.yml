@@ -1,0 +1,34 @@
+server:
+  port: 3366
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    # config 客户端配置
+    config:
+      server:
+        git:
+          uri: git@github.com:qianiqiqn/git-test.git  #GitHub 上面的git仓库的名字
+          search-paths:
+            - git-test
+      label: master
+  # rabbitmq 相关配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+# rabbitmq 相关配置，暴露Bus刷新配置的端点
+management:
+  endpoints: #暴露Bus刷新配置的端点
+    web:
+      exposure:
+        include: "bus-refresh"
+eureka:
+  client:
+    service-url:
+      defultZone: http://localhost:7001/eureka
+
+
